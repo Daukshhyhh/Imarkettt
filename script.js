@@ -965,3 +965,5 @@ const initialize = () => {
 };
 
 initialize();
+console.log("script works");
+

@@ -49,8 +49,8 @@ const cityConfig = {
   "Атырау": {
     key: "atyrau",
     label: { ru: "Атырау", kz: "Атырау" },
-    phone: "77718450606",
-    phoneDisplay: "+7 771 845 0606",
+    phone: "77078450606",
+    phoneDisplay: "+7 707 845 0606",
     address: "Кулманова 105 а",
     instagram: "https://www.instagram.com/imarket.atyrau?igsh=d284Mjc1cTl4cDV5",
     map: "https://2gis.kz/atyrau/search/iMarket%2C%20%D0%BC%D0%B0%D0%B3%D0%B0%D0%B7%D0%B8%D0%BD%20%D1%82%D0%B5%D0%BB%D0%B5%D1%84%D0%BE%D0%BD%D0%BE%D0%B2%20%D0%B8%20%D0%B0%D0%BA%D1%81%D0%B5%D1%81%D1%81%D1%83%D0%B0%D1%80%D0%BE%D0%B2/firm/70000001098329895/51.902173%2C47.108669?m=51.902173%2C47.108669%2F17.63",
@@ -67,27 +67,27 @@ const cityConfig = {
 };
 
 const tradeinBasePrices = {
-  "iPhone 11": 150000,
-  "iPhone 11 Pro": 175000,
-  "iPhone 11 Pro Max": 195000,
-  "iPhone 12": 185000,
-  "iPhone 12 Pro": 220000,
-  "iPhone 12 Pro Max": 250000,
-  "iPhone 13": 260000,
-  "iPhone 13 Pro": 310000,
-  "iPhone 13 Pro Max": 345000,
-  "iPhone 14": 330000,
-  "iPhone 14 Pro": 395000,
-  "iPhone 14 Pro Max": 440000,
-  "iPhone 15": 420000,
-  "iPhone 15 Pro": 595000,
-  "iPhone 15 Pro Max": 660000,
-  "iPhone 16": 500000,
-  "iPhone 16 Pro": 670000,
-  "iPhone 16 Pro Max": 740000,
-  "iPhone 17": 590000,
-  "iPhone 17 Pro": 760000,
-  "iPhone 17 Pro Max": 830000,
+  "iPhone 11": 110000,
+  "iPhone 11 Pro": 170000,
+  "iPhone 11 Pro Max": 220000,
+  "iPhone 12": 195000,
+  "iPhone 12 Pro": 287500,
+  "iPhone 12 Pro Max": 355000,
+  "iPhone 13": 320000,
+  "iPhone 13 Pro": 480000,
+  "iPhone 13 Pro Max": 515000,
+  "iPhone 14": 455000,
+  "iPhone 14 Pro": 667500,
+  "iPhone 14 Pro Max": 792500,
+  "iPhone 15": 682500,
+  "iPhone 15 Pro": 952500,
+  "iPhone 15 Pro Max": 1097500,
+  "iPhone 16": 952500,
+  "iPhone 16 Pro": 1207500,
+  "iPhone 16 Pro Max": 1282500,
+  "iPhone 17": 1172500,
+  "iPhone 17 Pro": 1520000,
+  "iPhone 17 Pro Max": 1670000,
 };
 
 const conditionFactors = {
@@ -146,6 +146,9 @@ const translations = {
           text: "Каталог, контакты, адреса филиалов и WhatsApp собраны в одном месте.",
         },
       ],
+    },
+    brandManifesto: {
+      text: "Лучшее сочетание цены и качества для вашего нового iPhone.",
     },
     catalog: {
       eyebrow: "Каталог",
@@ -312,6 +315,9 @@ const translations = {
           text: "Каталог, байланыс, филиал мекенжайлары және WhatsApp бір жерде жиналған.",
         },
       ],
+    },
+    brandManifesto: {
+      text: "Жаңа iPhone үшін баға мен сапаның ең үздік үйлесімі.",
     },
     catalog: {
       eyebrow: "Каталог",
@@ -531,6 +537,7 @@ const applyStaticTranslations = () => {
   const experienceEyebrow = document.querySelector(".experience-section .section-heading .eyebrow");
   const experienceTitle = document.querySelector(".experience-section .section-heading h2");
   const experienceCards = document.querySelectorAll(".experience-card");
+  const brandManifestoText = document.querySelector(".brand-manifesto-text");
   const catalogEyebrow = document.querySelector(".catalog-section .section-heading .eyebrow");
   const catalogTitle = document.querySelector(".catalog-section .section-heading h2");
   const catalogSpotlightLabel = document.querySelector(".catalog-spotlight-label");
@@ -605,6 +612,8 @@ const applyStaticTranslations = () => {
     card.querySelector(".metric-value").textContent = cardData.title;
     card.querySelector("p").textContent = cardData.text;
   });
+
+  if (brandManifestoText) brandManifestoText.textContent = t.brandManifesto.text;
 
   if (catalogEyebrow) catalogEyebrow.textContent = t.catalog.eyebrow;
   if (catalogTitle) catalogTitle.textContent = t.catalog.title;
@@ -802,7 +811,7 @@ const updateTradeinEstimate = () => {
 
   const damageFactor = damage === "Да" ? 0.87 : 1;
   const replacedFactor = batteryReplaced === "Да" ? 0.94 : 1;
-  const boxFactor = hasBox === "Да" ? 1.03 : 0.97;
+  const boxBonus = hasBox === "Нет" ? 10000 : 0;
   const repairedFactor = wasRepaired === "Да" ? 0.88 : 1;
   const appraisalFactor = 0.35;
 
@@ -813,9 +822,9 @@ const updateTradeinEstimate = () => {
       batteryFactor *
       damageFactor *
       replacedFactor *
-      boxFactor *
       repairedFactor *
-      appraisalFactor
+      appraisalFactor +
+      boxBonus
   );
 
   tradeinPrice.textContent = formatPrice(result);

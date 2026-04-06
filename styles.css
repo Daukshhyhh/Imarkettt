@@ -111,6 +111,7 @@ select {
 .topbar,
 .hero-showcase,
 .hero-panel,
+.brand-manifesto-card,
 .metric-card,
 .experience-card,
 .catalog-card,
@@ -193,6 +194,54 @@ select {
   align-items: center;
   gap: 16px;
   color: var(--muted-strong);
+}
+
+.brand-manifesto {
+  margin: 18px 0 34px;
+}
+
+.brand-manifesto-card {
+  position: relative;
+  overflow: hidden;
+  padding: 38px 28px 34px;
+  border-radius: var(--radius-xl);
+  background:
+    radial-gradient(circle at top, rgba(0, 0, 0, 0.045), transparent 26%),
+    linear-gradient(180deg, #fffdf8 0%, #f6f1e8 100%);
+  color: #0c0c0f;
+  text-align: center;
+}
+
+.brand-manifesto-marks {
+  display: flex;
+  justify-content: center;
+  gap: clamp(96px, 18vw, 220px);
+  margin-bottom: 26px;
+}
+
+.brand-manifesto-marks span {
+  width: 42px;
+  height: 42px;
+  border: 4px dashed #111;
+  border-radius: 50%;
+  opacity: 0.92;
+}
+
+.brand-manifesto-title {
+  margin: 0;
+  font-family: "Manrope", sans-serif;
+  font-size: clamp(2rem, 5.2vw, 4.5rem);
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.brand-manifesto-text {
+  margin: 14px auto 0;
+  max-width: 620px;
+  color: rgba(12, 12, 15, 0.72);
+  font-size: 1rem;
+  line-height: 1.6;
 }
 
 .city-switch,
@@ -1215,3 +1264,4 @@ input[type="range"] {
     padding: 14px;
   }
 }
+
